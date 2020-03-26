@@ -1,0 +1,77 @@
+body {
+    margin: 1rem;
+}
+
+button {
+    white-space: nowrap;
+}
+
+.form-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.button-add {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+.button-player {
+    margin-right: .3rem;
+    margin-bottom: .3rem;
+}
+.button-player:disabled {
+    opacity: 1;
+}
+
+.button-start-stop {
+    margin-left: auto;
+}
+
+.players {
+    margin-bottom: 0.5rem;
+}
+
+.table-scroll-wrap {
+    overflow-x: auto;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.table td.state-left-1,
+.table td.state-right-1 {
+    background-color: #ffc107;
+}
+
+.table td.state-left-2,
+.table td.state-right-3 {
+    background-color: #28a745;
+}
+
+.table td.state-left-3,
+.table td.state-right-2 {
+    background-color: #dc3545;
+}
+
+.table td.col-index {
+    width: 0.1rem;
+}
+.cell-index {
+    margin: 0 0.3rem;
+}
+
+.table td.col-state {
+    width: 0.1rem;
+}
+.button-state {
+    margin: 0.3rem;
+}
+
+
+
