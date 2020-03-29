@@ -1,8 +1,8 @@
 {
-  "name": "teams-generator",
+  "name": "matches-generator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://cablo.github.io/matches-generator",
+  "homepage": "https://cablo.github.io/matches-generator",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

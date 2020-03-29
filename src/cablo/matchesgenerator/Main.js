@@ -1,6 +1,6 @@
 import React from 'react';
 import MatchesGenerator from './MatchesGenerator';
-import * as F from './components';
+import * as C from './components';
 import './css/bootstrap.min.css';
 import './Main.css';
 
@@ -8,17 +8,11 @@ export default class Main extends React.Component {
 
     constructor(props) {
         super(props);
-        let players = ['Zetko', 'Cecka', 'Acko', 'Becko'].map(elm => {
-            return {
-                name: elm,
-                wins: 0
-            };
-        });
         this.state = {
             editing: true,
             playerName: '',
-            players: players,
-            matches: new MatchesGenerator().generate(players.length),
+            players: [],
+            matches: [],
             matchesPlayed: 0
         };
     }
@@ -33,6 +27,18 @@ export default class Main extends React.Component {
         });
     };
 
+    _updatePlayers = (players) => {
+        // generate matches and add state to each match
+        let matches = MatchesGenerator.generate(players.length).map(e => {
+            e.state = 0;
+            return e;
+        });
+        this.setState({
+            players: players,
+            matches: matches
+        });
+    };
+
     onPlayerNameChange = (playerName) => {
         this.setState({playerName: playerName});
     };
@@ -40,11 +46,7 @@ export default class Main extends React.Component {
     onPlayerAdd = () => {
         let playerName = this.state.playerName.trim();
         if (playerName) {
-            let players = this._sortPlayers([...this.state.players, {name: playerName, wins: 0}]);
-            this.setState({
-                players: players,
-                matches: new MatchesGenerator().generate(players.length)
-            });
+            this._updatePlayers(this._sortPlayers([...this.state.players, {name: playerName, wins: 0}]))
         }
         this.setState({
             playerName: ''
@@ -53,11 +55,7 @@ export default class Main extends React.Component {
 
     onPlayerRemove = (index) => {
         if (this.state.editing) {
-            let players = this.state.players.filter((_, i) => i !== index);
-            this.setState({
-                players: players,
-                matches: new MatchesGenerator().generate(players.length)
-            });
+            this._updatePlayers(this.state.players.filter((_, i) => i !== index));
         }
     };
 
@@ -92,16 +90,17 @@ export default class Main extends React.Component {
 
     render() {
         return <React.Fragment>
-            <F.NameInput isEditing={this.state.editing}
+            <C.NameInput isEditing={this.state.editing}
                          playerName={this.state.playerName}
+                         matchesLength={this.state.matches.length}
                          matchesPlayed={this.state.matchesPlayed}
                          onPlayerNameChange={this.onPlayerNameChange}
                          onPlayerAdd={this.onPlayerAdd}
                          onStartStop={() => this.setState({editing: !this.state.editing})}/>
-            <F.Players isEditing={this.state.editing}
+            <C.Players isEditing={this.state.editing}
                        players={this._sortPlayers(this.state.players)}
                        onPlayerRemove={this.onPlayerRemove}/>
-            <F.MatchesTable
+            <C.MatchesTable
                 isEditing={this.state.editing}
                 matches={this.state.matches}
                 players={this.state.players}
