@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/matches-generator/static/css/main.ea663904.chunk.css",
+    "main.js": "/matches-generator/static/js/main.1f4cfc9f.chunk.js",
+    "main.js.map": "/matches-generator/static/js/main.1f4cfc9f.chunk.js.map",
+    "runtime-main.js": "/matches-generator/static/js/runtime-main.cfbadc01.js",
+    "runtime-main.js.map": "/matches-generator/static/js/runtime-main.cfbadc01.js.map",
+    "static/js/2.abff978e.chunk.js": "/matches-generator/static/js/2.abff978e.chunk.js",
+    "static/js/2.abff978e.chunk.js.map": "/matches-generator/static/js/2.abff978e.chunk.js.map",
+    "index.html": "/matches-generator/index.html",
+    "precache-manifest.27208d5c85c1a208b62a3c6551e95c47.js": "/matches-generator/precache-manifest.27208d5c85c1a208b62a3c6551e95c47.js",
+    "service-worker.js": "/matches-generator/service-worker.js",
+    "static/css/main.ea663904.chunk.css.map": "/matches-generator/static/css/main.ea663904.chunk.css.map",
+    "static/js/2.abff978e.chunk.js.LICENSE.txt": "/matches-generator/static/js/2.abff978e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cfbadc01.js",
+    "static/js/2.abff978e.chunk.js",
+    "static/css/main.ea663904.chunk.css",
+    "static/js/main.1f4cfc9f.chunk.js"
+  ]
+}
