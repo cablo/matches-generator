@@ -1,5 +1,6 @@
 import React from 'react';
 import MatchesGenerator from './MatchesGenerator';
+import MatchesTable from "./MatchesTable";
 import * as C from './components';
 import './css/bootstrap.min.css';
 import './Main.css';
@@ -13,7 +14,8 @@ export default class Main extends React.Component {
             playerName: '',
             players: [],
             matches: [],
-            matchesPlayed: 0
+            matchesPlayed: 0,
+            matchesTableRenderSwitch: false
         };
     }
 
@@ -39,8 +41,17 @@ export default class Main extends React.Component {
         });
     };
 
+    _clearPlayerWins = () => {
+        let players = [...this.state.players];
+        players.forEach((player) => player.wins = 0);
+        return players;
+    };
+
     onPlayerNameChange = (playerName) => {
-        this.setState({playerName: playerName});
+        this.setState({
+            playerName: playerName,
+            matchesTableRenderSwitch: !this.state.matchesTableRenderSwitch
+        });
     };
 
     onPlayerAdd = () => {
@@ -53,6 +64,13 @@ export default class Main extends React.Component {
         });
     };
 
+    onStartStop = () => {
+        this.setState({
+            editing: !this.state.editing,
+            players: this._clearPlayerWins()
+        });
+    };
+
     onPlayerRemove = (index) => {
         if (this.state.editing) {
             this._updatePlayers(this.state.players.filter((_, i) => i !== index));
@@ -60,10 +78,7 @@ export default class Main extends React.Component {
     };
 
     onMatchChange = (index) => {
-        // clear players wins
-        let players = [...this.state.players];
-        players.forEach((player) => player.wins = 0);
-
+        let players = this._clearPlayerWins();
         // update match state
         let matches = [...this.state.matches];
         matches[index].state++;
@@ -96,12 +111,13 @@ export default class Main extends React.Component {
                          matchesPlayed={this.state.matchesPlayed}
                          onPlayerNameChange={this.onPlayerNameChange}
                          onPlayerAdd={this.onPlayerAdd}
-                         onStartStop={() => this.setState({editing: !this.state.editing})}/>
+                         onStartStop={() => this.onStartStop()}/>
             <C.Players isEditing={this.state.editing}
                        players={this._sortPlayers(this.state.players)}
                        onPlayerRemove={this.onPlayerRemove}/>
-            <C.MatchesTable
+            <MatchesTable
                 isEditing={this.state.editing}
+                matchesTableRenderSwitch={this.state.matchesTableRenderSwitch}
                 matches={this.state.matches}
                 players={this.state.players}
                 onMatchChange={(index) => this.onMatchChange(index)}/>
